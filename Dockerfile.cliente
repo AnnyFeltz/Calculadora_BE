@@ -1,0 +1,9 @@
+FROM openjdk:17-jdk-slim
+
+WORKDIR /app
+
+COPY src/ .
+
+RUN javac *.java
+
+CMD ["java", "Cliente"]

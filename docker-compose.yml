@@ -1,0 +1,27 @@
+version: "3.9"
+
+services:
+  servidor:
+    build:
+      context: .
+      dockerfile: Dockerfile.servidor
+    container_name: servidor
+    hostname: servidor
+    ports:
+      - "1099:1099"
+    networks:
+      - rmi-net
+
+  cliente:
+    build:
+      context: .
+      dockerfile: Dockerfile.cliente
+    container_name: cliente
+    depends_on:
+      - servidor
+    networks:
+      - rmi-net
+
+networks:
+  rmi-net:
+    driver: bridge
